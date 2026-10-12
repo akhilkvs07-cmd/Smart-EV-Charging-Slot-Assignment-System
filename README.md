@@ -7,8 +7,9 @@ Open **index.html** in a modern browser, or enable GitHub Pages to host it as a 
 
 ## Features
 - Compare Smart Priority Scheduling with First Come, First Served (FCFS).
-- Generate configurable vehicle workloads and select 2–6 charging stations.
-- Simulate emergency and low-battery requests.
+- Enter your own EV records (vehicle ID, battery level, arrival time, charging duration, and Normal/High/Emergency priority), or generate a sample workload.
+- Select 2–6 charging stations and compare algorithms on the same manually entered scenario.
+- Simulate emergency and low-battery requests; manual inputs are clearly distinguished from generated sample data.
 - View station allocation, per-vehicle waiting time, queue order, average wait, longest wait, and station utilisation.
 - Export per-vehicle results as CSV.
 - Responsive dark/light interface and print-to-PDF support.
@@ -20,4 +21,4 @@ Open **index.html** in a modern browser, or enable GitHub Pages to host it as a 
 - **Performance analysis:** compare average waiting time, maximum wait and charger utilisation.
 
 ## Important note
-This is a simplified academic simulation for explaining scheduling concepts. Results are illustrative, not a validated real-world charging-network model. The interactive scheduling logic is implemented in JavaScript for this demo and can be mapped to C++ data structures and algorithms in the project implementation.
+This is a simplified academic simulation for explaining scheduling concepts. Generated sample vehicles are random demo data; manually entered values are user-provided scenario inputs. Charging durations and station availability are assumptions, and results are illustrative—not live EV telemetry or a validated real-world charging-network model. The interactive scheduling logic is implemented in JavaScript for this demo and can be mapped to C++ data structures and algorithms in the project implementation.
