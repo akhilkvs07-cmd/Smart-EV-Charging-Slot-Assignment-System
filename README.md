@@ -1,24 +1,32 @@
-# Smart EV Charging Slot Assignment System
+# Smart EV Charging Slot Assignment System — VoltFlow
 
-A browser-based educational simulator for a data-structures-and-algorithms micro-project. It demonstrates how charging requests can be assigned to limited charging ports and how scheduling policy affects waiting time and utilisation.
+VoltFlow is a responsive, browser-based dashboard that mirrors the allocation logic in the project's C++ program. It is an educational simulator; it does not connect to physical chargers or use live telemetry.
 
-## Run the simulator
-Open **index.html** in a modern browser, or enable GitHub Pages to host it as a live website. No build tools, packages, API keys, or backend are required.
+## Open the dashboard
 
-## Features
-- Compare Smart Priority Scheduling with First Come, First Served (FCFS).
-- Enter your own EV records (vehicle ID, battery level, arrival time, charging duration, and Normal/High/Emergency priority), or generate a sample workload.
-- Select 2–6 charging stations and compare algorithms on the same manually entered scenario.
-- Simulate emergency and low-battery requests; manual inputs are clearly distinguished from generated sample data.
-- View station allocation, per-vehicle waiting time, queue order, average wait, longest wait, and station utilisation.
-- Export per-vehicle results as CSV.
-- Responsive dark/light interface and print-to-PDF support.
+GitHub Pages: https://akhilkvs07-cmd.github.io/Smart-EV-Charging-Slot-Assignment-System/
+
+You can also open `index.html` directly in a modern browser. No build tools, packages, API keys, or backend are required.
+
+## What the dashboard demonstrates
+
+- Add EV records with ID, battery percentage, waiting time, connector type, emergency flag, and reservation flag.
+- Add charging stations with ID, connector type, power rating, and availability.
+- Calculate the same priority score as the C++ program:
+  `100 - battery + floor(wait / 5) + (reserved ? 20 : 0) + (emergency ? 100 : 0)`.
+- Process EVs in priority order. Equal scores are broken by longer waiting time, then lower EV ID.
+- Assign each EV to an available station with a matching connector, choosing the highest-power compatible station.
+- Show final assignments, EVs still waiting, and station availability after allocation.
+- Load a ready-made example, toggle dark/light theme, and print or save the dashboard as PDF.
 
 ## Data structures and algorithm concepts
-- **Queue / FCFS:** process requests in arrival order.
-- **Priority queue concept:** emergency and low-battery vehicles are considered earlier in Smart mode.
-- **Greedy best-fit assignment:** assign each request to a charger that becomes available earliest.
-- **Performance analysis:** compare average waiting time, maximum wait and charger utilisation.
 
-## Important note
-This is a simplified academic simulation for explaining scheduling concepts. Generated sample vehicles are random demo data; manually entered values are user-provided scenario inputs. Charging durations and station availability are assumptions, and results are illustrative—not live EV telemetry or a validated real-world charging-network model. The interactive scheduling logic is implemented in JavaScript for this demo and can be mapped to C++ data structures and algorithms in the project implementation.
+- **Struct-like records:** EV and Station objects hold each item's data.
+- **Priority queue:** EVs are ordered by priority, waiting time, then ID.
+- **Greedy station selection:** for each EV, scan compatible available stations and select the one with the greatest power.
+- **Waiting list:** EVs with no compatible available station remain unassigned.
+- **State update:** a station becomes occupied once an EV is assigned to it.
+
+## Important implementation note
+
+The C++ source remains the reference implementation. The dashboard mirrors its current rules in JavaScript so that it can run in a browser without a server. Both are educational simulations, not validated real-world charging control software. Power is used only to choose between compatible stations; actual charging speed depends on the vehicle and charger hardware.
